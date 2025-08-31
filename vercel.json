@@ -3,7 +3,7 @@
   "outputDirectory": ".",
   "functions": {
     "worker.js": {
-      "runtime": "@vercel/node"
+      "runtime": "nodejs@18"
     }
   },
   "rewrites": [
