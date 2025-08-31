@@ -20,9 +20,9 @@ database_id = "1b40595d-45fa-406a-a708-da7dc47c1551"
 # binding = "EVENT_ARCHIVE"
 # bucket_name = "nostr-event-archive"
 
-# CPU limits (lower to 10 if not on paid Workers plan)
-[limits]
-cpu_ms = 30000
+# CPU limits (uncomment when on paid Workers plan)
+# [limits]
+# cpu_ms = 30000
 
 # Enable logs (on by default, but can disable)
 [observability.logs]
