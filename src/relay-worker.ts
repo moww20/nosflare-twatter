@@ -90,6 +90,20 @@ async function initializeDatabase(db: D1Database): Promise<void> {
       )`,
       `CREATE INDEX IF NOT EXISTS idx_tags_name_value ON tags(tag_name, tag_value)`,
       `CREATE INDEX IF NOT EXISTS idx_tags_event_id ON tags(event_id)`,
+      `CREATE INDEX IF NOT EXISTS idx_tags_name_value_event ON tags(tag_name, tag_value, event_id)`,
+      // Full-text search over posts (last 90 days kept in events but FTS table can hold all, we clean on retention)
+      `CREATE VIRTUAL TABLE IF NOT EXISTS events_fts USING fts5(content, event_id)`,
+      `CREATE TABLE IF NOT EXISTS contact_meta (
+        follower_pubkey TEXT PRIMARY KEY,
+        last_list_at INTEGER
+      )`,
+      `CREATE TABLE IF NOT EXISTS follow_index (
+        followee_pubkey TEXT NOT NULL,
+        follower_pubkey TEXT NOT NULL,
+        PRIMARY KEY (followee_pubkey, follower_pubkey)
+      )`,
+      `CREATE INDEX IF NOT EXISTS idx_follow_index_followee ON follow_index(followee_pubkey)`,
+      `CREATE INDEX IF NOT EXISTS idx_follow_index_follower ON follow_index(follower_pubkey)`,
       `CREATE TABLE IF NOT EXISTS paid_pubkeys (
         pubkey TEXT PRIMARY KEY,
         paid_at INTEGER NOT NULL,
@@ -483,6 +497,34 @@ async function saveEventToD1(event: NostrEvent, env: Env): Promise<{ success: bo
         VALUES (?, ?, ?, ?)
       `).bind(contentHash, event.id, event.pubkey, event.created_at).run();
     }
+
+    // Maintain FTS index for textual posts
+    try {
+      if (event.kind === 1 || event.kind === 30023) {
+        await session.prepare(`INSERT INTO events_fts (rowid, content, event_id) VALUES ((SELECT rowid FROM events WHERE id = ?), ?, ?)`).bind(event.id, event.content, event.id).run();
+      }
+    } catch {}
+
+    // Maintain follow_index for kind:3 (replace semantics with monotonic guard)
+    try {
+      if (event.kind === 3) {
+        const follower = event.pubkey;
+        const createdAt = Number(event.created_at || 0);
+        const last = await session.prepare(`SELECT last_list_at as t FROM contact_meta WHERE follower_pubkey=?`).bind(follower).first();
+        const lastAt = Number((last as any)?.t || 0);
+        if (!lastAt || createdAt >= lastAt) {
+          await session.prepare(`DELETE FROM follow_index WHERE follower_pubkey=?`).bind(follower).run();
+          const batch = [] as any[];
+          for (const t of (event.tags || [])) {
+            if (Array.isArray(t) && t[0]==='p' && typeof t[1]==='string') {
+              batch.push(session.prepare(`INSERT OR REPLACE INTO follow_index (followee_pubkey, follower_pubkey) VALUES(?, ?)`).bind(t[1], follower));
+            }
+          }
+          if (batch.length) await session.batch(batch);
+          await session.prepare(`INSERT INTO contact_meta (follower_pubkey, last_list_at) VALUES(?, ?) ON CONFLICT(follower_pubkey) DO UPDATE SET last_list_at=excluded.last_list_at`).bind(follower, createdAt).run();
+        }
+      }
+    } catch {}
 
     console.log(`Event ${event.id} saved successfully to D1.`);
     return { success: true, message: "Event received successfully for processing" };
@@ -2394,6 +2436,8 @@ export default {
         return await handleCheckPayment(request, env);
       }
 
+      // HTTP ingest removed: clients must publish via WebSocket to this relay
+
       // Main endpoints
       if (url.pathname === "/") {
         if (request.headers.get("Upgrade") === "websocket") {
@@ -2411,42 +2455,104 @@ export default {
           newUrl.searchParams.set('country', cf?.country || 'unknown');
           newUrl.searchParams.set('doName', doName);
 
+          // Forward the request to the DO
           return stub.fetch(new Request(newUrl, request));
-        } else if (request.headers.get("Accept") === "application/nostr+json") {
+        } else if (request.headers.get('Accept') === 'application/nostr+json') {
+          // NIP-11
           return handleRelayInfoRequest(request);
         } else {
-          // Initialize database in background
-          ctx.waitUntil(
-            initializeDatabase(env.RELAY_DATABASE)
-              .catch(e => console.error("DB init error:", e))
-          );
+          // Initialize DB and serve landing page
+          ctx.waitUntil(initializeDatabase(env.RELAY_DATABASE).catch(e => console.error('DB init error:', e)));
           return serveLandingPage();
         }
-      } else if (url.pathname === "/.well-known/nostr.json") {
+      } else if (url.pathname === '/.well-known/nostr.json') {
         return handleNIP05Request(url);
-      } else if (url.pathname === "/favicon.ico") {
+      } else if (url.pathname === '/favicon.ico') {
         return await serveFavicon();
+      } else if (url.pathname === '/api/health') {
+        return await handleHealth(request, env);
+      } else if (url.pathname === '/api/metrics') {
+        return await handleMetrics(request, env);
+      } else if (url.pathname === '/api/admin/bookmark' && request.method === 'GET') {
+        // read bookmark (optional simple admin)
+        try {
+          const session = env.RELAY_DATABASE.withSession('first-unconstrained');
+          const key = 'profile_index_since:default';
+          const row = await session.prepare(`SELECT value FROM system_config WHERE key=?`).bind(key).first();
+          return new Response(JSON.stringify({ key, value: row?.value || null }), { status: 200, headers: { 'Content-Type':'application/json' } });
+        } catch (e:any) {
+          return new Response(JSON.stringify({ error: e?.message||'error' }), { status: 500, headers: { 'Content-Type':'application/json' } });
+        }
       } else {
-        return new Response("Invalid request", { status: 400 });
+        return new Response('Invalid request', { status: 400 });
       }
     } catch (error) {
-      console.error("Error in fetch handler:", error);
-      return new Response("Internal Server Error", { status: 500 });
+      console.error('Error in fetch handler:', error);
+      return new Response('Internal Server Error', { status: 500 });
     }
   },
-
   // Scheduled handler for archiving
   async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
-    console.log('Running scheduled archive process...');
-
+    console.log('Running scheduled maintenance...');
+    try {
+      // Daily cleanup: delete content older than 90 days for kinds 1,6,7,9735
+      const session = env.RELAY_DATABASE.withSession('first-primary');
+      const cutoff = Math.floor(Date.now()/1000) - (90 * 24 * 60 * 60);
+      await session.prepare(`DELETE FROM events WHERE kind IN (1,6,7,9735) AND created_at < ?`).bind(cutoff).run();
+      // Also clean orphaned tags for deleted events
+      await session.prepare(`DELETE FROM tags WHERE event_id NOT IN (SELECT id FROM events)`).run();
+      // Clean FTS rows for removed events
+      await session.prepare(`DELETE FROM events_fts WHERE event_id NOT IN (SELECT id FROM events)`).run();
+    } catch (error) {
+      console.error('Cleanup process failed:', error);
+    }
     try {
       await archiveOldEvents(env.RELAY_DATABASE, env.EVENT_ARCHIVE);
-      console.log('Archive process completed successfully');
     } catch (error) {
       console.error('Archive process failed:', error);
     }
+    // Optionally, emit a small metrics heartbeat into logs
+    try {
+      const session = env.RELAY_DATABASE.withSession('first-unconstrained');
+      const cnt = await session.prepare('SELECT COUNT(*) as c FROM events WHERE created_at > ?').bind(Math.floor(Date.now()/1000) - 86400).first();
+      console.log(`Heartbeat: events_last_24h=${(cnt as any)?.c || 0}`);
+    } catch {}
   }
 };
 
 // Export the Durable Object class
 export { RelayWebSocket };
+
+async function handleHealth(request: Request, env: Env): Promise<Response> {
+  try {
+    const session = env.RELAY_DATABASE.withSession('first-unconstrained');
+    const count = await session.prepare(`SELECT COUNT(*) as c FROM events`).first();
+    const body = {
+      ok: true,
+      events: Number((count as any)?.c || 0),
+      timestamp: Math.floor(Date.now()/1000)
+    };
+    return new Response(JSON.stringify(body), { status: 200, headers: { 'Content-Type':'application/json' } });
+  } catch (e: any) {
+    return new Response(JSON.stringify({ ok:false, error: e?.message || 'error' }), { status: 500, headers: { 'Content-Type':'application/json' } });
+  }
+}
+
+async function handleMetrics(request: Request, env: Env): Promise<Response> {
+  try {
+    const session = env.RELAY_DATABASE.withSession('first-unconstrained');
+    const totals = await session.prepare(`SELECT kind, COUNT(*) as c FROM events GROUP BY kind`).all();
+    const byKind: Record<string, number> = {};
+    for (const row of (totals.results || [])) {
+      byKind[String((row as any).kind)] = Number((row as any).c || 0);
+    }
+    const body = {
+      ok: true,
+      byKind,
+      timestamp: Math.floor(Date.now()/1000)
+    };
+    return new Response(JSON.stringify(body), { status: 200, headers: { 'Content-Type':'application/json' } });
+  } catch (e:any) {
+    return new Response(JSON.stringify({ ok:false, error: e?.message||'error' }), { status: 500, headers: { 'Content-Type':'application/json' } });
+  }
+}

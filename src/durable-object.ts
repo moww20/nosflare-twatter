@@ -10,6 +10,7 @@ import {
   excludedRateLimitKinds
 } from './config';
 import { verifyEventSignature, hasPaidForRelay, processEvent, queryEventsWithArchive } from './relay-worker';
+import { SimplePool, Filter } from 'nostr-tools';
 
 // Session attachment data structure
 interface SessionAttachment {
@@ -27,6 +28,11 @@ export class RelayWebSocket implements DurableObject {
   private doId: string;
   private doName: string;
   private processedEvents: Map<string, number> = new Map(); // eventId -> timestamp
+  private upstreamPool: SimplePool | null = null;
+  private upstreamRelays: string[] = [];
+  private upstreamSince: Record<string, number> = { k0: 0, k3: 0, kcomm: 0, kcontent: 0 };
+  private upstreamSubsCloser: any | null = null;
+  private relayHealth: Map<string, { ok: number; fail: number; backoffMs: number; nextAt: number }>; 
 
   // Define allowed endpoints
   private static readonly ALLOWED_ENDPOINTS = [
@@ -62,6 +68,20 @@ export class RelayWebSocket implements DurableObject {
     this.region = 'unknown';
     this.doName = 'unknown';
     this.processedEvents = new Map();
+    this.relayHealth = new Map();
+    // Initialize upstream relays from config/env (top 20)
+    try {
+      const envList = (env as any).UPSTREAM_RELAYS as string | undefined;
+      const defaults = [
+        'wss://relay.damus.io','wss://relay.primal.net','wss://nos.lol','wss://relay.snort.social','wss://eden.nostr.land',
+        'wss://nostr.wine','wss://relay.nostr.band','wss://nostr.mom','wss://purplepag.es','wss://nostr.w3ird.tech',
+        'wss://relay.nostr.net','wss://relay.current.fyi','wss://nostr-relay.siamstr.com','wss://relay.nostr.bg','wss://relay.wavlake.com',
+        'wss://nostr.vulpem.com','wss://relay.orangepill.dev','wss://relay.nostr.it','wss://relay.nostrich.land','wss://relay.kronkltd.net'
+      ];
+      const list = [...new Set(String(envList||'').split(',').map(s=>s.trim()).filter(Boolean).concat(defaults))];
+      this.upstreamRelays = list.slice(0, 20);
+    } catch { this.upstreamRelays = []; }
+    try { this.state.blockConcurrencyWhile(async () => { await this.initUpstream(); await this.startPersistentUpstream(); }); } catch {}
   }
 
   // Storage helper methods for subscriptions
@@ -196,6 +216,77 @@ export class RelayWebSocket implements DurableObject {
       } else {
         this.sendError(ws, 'Failed to process message');
       }
+    }
+  }
+
+  private async initUpstream(): Promise<void> {
+    const now = Math.floor(Date.now()/1000);
+    try {
+      const session = this.env.RELAY_DATABASE.withSession('first-unconstrained');
+      const keys = ['bookmark:k0','bookmark:k3','bookmark:kcomm','bookmark:kcontent'];
+      for (const key of keys) {
+        try {
+          const row = await session.prepare(`SELECT value FROM system_config WHERE key=?`).bind(key).first();
+          const val = Number((row as any)?.value || 0);
+          if (key.endsWith('k0')) this.upstreamSince.k0 = val || (now - 3600);
+          if (key.endsWith('k3')) this.upstreamSince.k3 = val || (now - 3600);
+          if (key.endsWith('kcomm')) this.upstreamSince.kcomm = val || (now - 3600);
+          if (key.endsWith('kcontent')) this.upstreamSince.kcontent = val || (now - 3600);
+        } catch { /* ignore */ }
+      }
+    } catch { /* ignore */ }
+    // Defaults
+    if (!this.upstreamSince.k0) this.upstreamSince.k0 = now - 3600;
+    if (!this.upstreamSince.k3) this.upstreamSince.k3 = now - 3600;
+    if (!this.upstreamSince.kcomm) this.upstreamSince.kcomm = now - 3600;
+    if (!this.upstreamSince.kcontent) this.upstreamSince.kcontent = now - 3600;
+  }
+
+  private groupForKind(kind: number): 'k0'|'k3'|'kcomm'|'kcontent' {
+    if (kind === 0) return 'k0';
+    if (kind === 3) return 'k3';
+    if (kind === 34550 || kind === 4550) return 'kcomm';
+    return 'kcontent';
+  }
+
+  private async updateBookmark(kind: number, createdAt: number): Promise<void> {
+    try {
+      const group = this.groupForKind(kind);
+      if (!createdAt) return;
+      if (createdAt <= (this.upstreamSince[group] || 0)) return;
+      this.upstreamSince[group] = createdAt;
+      const session = this.env.RELAY_DATABASE.withSession('first-primary');
+      await session.prepare(`INSERT INTO system_config(key, value) VALUES(?, ?) ON CONFLICT(key) DO UPDATE SET value=excluded.value`).bind(`bookmark:${group}`, String(createdAt)).run();
+    } catch { /* ignore */ }
+  }
+
+  private async startPersistentUpstream(): Promise<void> {
+    if (!this.upstreamRelays.length) return;
+    if (!this.upstreamPool) this.upstreamPool = new SimplePool();
+    const pool = this.upstreamPool as any;
+    const filters: Filter[] = [
+      { kinds: [0], since: this.upstreamSince.k0 },
+      { kinds: [3], since: this.upstreamSince.k3 },
+      { kinds: [34550,4550], since: this.upstreamSince.kcomm },
+      { kinds: [1,6,7,9735], since: this.upstreamSince.kcontent }
+    ] as any;
+    try {
+      if (this.upstreamSubsCloser) { try { this.upstreamSubsCloser.close(); } catch {} }
+      this.upstreamSubsCloser = pool.subscribeMany(this.upstreamRelays, filters, {
+        onevent: async (ev: any) => {
+          try {
+            if (!ev || typeof ev.id !== 'string') return;
+            const res = await processEvent(ev, 'upstream', this.env);
+            if (res?.success) await this.broadcastEvent(ev);
+            if (typeof ev.created_at === 'number') await this.updateBookmark(ev.kind, ev.created_at);
+          } catch { /* ignore */ }
+        },
+        oneose: () => { /* ignore */ }
+      });
+    } catch (e) {
+      console.error('Upstream subscribe failed:', e);
+      // Retry later
+      try { setTimeout(() => { this.startPersistentUpstream().catch(()=>{}); }, 10000); } catch {}
     }
   }
 
@@ -372,6 +463,9 @@ export class RelayWebSocket implements DurableObject {
         // Broadcast to all (local + remote)
         console.log(`DO ${this.doName} broadcasting event ${event.id}`);
         await this.broadcastEvent(event);
+
+        // Blast to upstream relays as well (fan-out)
+        try { await this.publishToUpstream(event); } catch {}
       } else {
         this.sendOK(session.webSocket, event.id, false, result.message);
       }
@@ -507,11 +601,11 @@ export class RelayWebSocket implements DurableObject {
   }
 
   private async broadcastEvent(event: NostrEvent): Promise<void> {
-    // Broadcast to local sessions
-    await this.broadcastToLocalSessions(event);
-
-    // Broadcast to other DOs
-    await this.broadcastToOtherDOs(event);
+    // Broadcast to local sessions & other DOs concurrently
+    await Promise.allSettled([
+      this.broadcastToLocalSessions(event),
+      this.broadcastToOtherDOs(event)
+    ]);
   }
 
   private async broadcastToLocalSessions(event: NostrEvent): Promise<void> {
@@ -584,6 +678,31 @@ export class RelayWebSocket implements DurableObject {
     console.log(`Event ${event.id} broadcast from DO ${this.doName} to ${successful}/${broadcasts.length} remote DOs`);
   }
 
+  private async publishToUpstream(event: NostrEvent): Promise<void> {
+    if (!this.upstreamRelays.length) return;
+    if (!this.upstreamPool) this.upstreamPool = new SimplePool();
+    try {
+      const now = Date.now();
+      const relays = this.upstreamRelays.filter(r => {
+        const h = this.relayHealth.get(r);
+        return !h || now >= (h.nextAt || 0);
+      });
+      const pubs = (this.upstreamPool as any).publish(relays, event);
+      const results = await Promise.allSettled(pubs);
+      let ok = 0;
+      results.forEach((res, i) => {
+        const relay = relays[i];
+        const h = this.relayHealth.get(relay) || { ok:0, fail:0, backoffMs: 0, nextAt: 0 };
+        if (res.status === 'fulfilled') { h.ok++; h.backoffMs = 0; h.nextAt = 0; ok++; }
+        else { h.fail++; h.backoffMs = Math.min(h.backoffMs ? h.backoffMs*2 : 500, 60000); h.nextAt = now + h.backoffMs; }
+        this.relayHealth.set(relay, h);
+      });
+      console.log(`Event ${event.id} published to ${ok}/${relays.length} upstream relays`);
+    } catch (error) {
+      console.error('Error publishing to upstream relays:', error);
+    }
+  }
+
   private async sendToSpecificDO(doName: string, event: NostrEvent): Promise<Response> {
     try {
       // Ensure we're only using allowed endpoints
@@ -613,10 +732,19 @@ export class RelayWebSocket implements DurableObject {
   }
 
   private matchesFilters(event: NostrEvent, filters: NostrFilter[]): boolean {
-    return filters.some(filter => this.matchesFilter(event, filter));
+    // Fast path: group filters to reduce checks
+    for (const filter of filters) {
+      if (this.matchesFilter(event, filter)) return true;
+    }
+    return false;
   }
 
   private matchesFilter(event: NostrEvent, filter: NostrFilter): boolean {
+    // Quick rejects by kind and time first
+    if (filter.kinds && filter.kinds.length > 0 && !filter.kinds.includes(event.kind)) return false;
+    if (filter.since && event.created_at < filter.since) return false;
+    if (filter.until && event.created_at > filter.until) return false;
+
     // Check IDs
     if (filter.ids && filter.ids.length > 0 && !filter.ids.includes(event.id)) {
       return false;
@@ -624,19 +752,6 @@ export class RelayWebSocket implements DurableObject {
 
     // Check authors
     if (filter.authors && filter.authors.length > 0 && !filter.authors.includes(event.pubkey)) {
-      return false;
-    }
-
-    // Check kinds
-    if (filter.kinds && filter.kinds.length > 0 && !filter.kinds.includes(event.kind)) {
-      return false;
-    }
-
-    // Check time bounds
-    if (filter.since && event.created_at < filter.since) {
-      return false;
-    }
-    if (filter.until && event.created_at > filter.until) {
       return false;
     }
 

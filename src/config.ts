@@ -17,7 +17,7 @@ export const relayInfo: RelayInfo = {
   description: "A serverless Nostr relay through Cloudflare Worker and D1 database",
   pubkey: "d49a9023a21dba1b3c8306ca369bf3243d8b44b8f0b6d1196607f7b0990fa8df",
   contact: "lux@fed.wtf",
-  supported_nips: [1, 2, 4, 5, 9, 11, 12, 15, 16, 17, 20, 22, 33, 40],
+  supported_nips: [1, 2, 4, 5, 9, 11, 12, 15, 16, 17, 20, 22, 33, 40, 72],
   software: "https://github.com/Spl0itable/nosflare",
   version: "7.2.7",
   icon: "https://raw.githubusercontent.com/Spl0itable/nosflare/main/images/flare.png",
@@ -123,7 +123,9 @@ export const blockedEventKindRanges = [
 // Allowed event kinds
 // Add comma-separated kinds Ex: 1, 2, 3
 export const allowedEventKinds = new Set<number>([
-  // ... kinds that are explicitly allowed
+  // Allow NIP-72 kinds explicitly if allowlist is used
+  34550, // community definition
+  4550   // moderator approval
 ]);
 
 // Blocked words or phrases (case-insensitive)
