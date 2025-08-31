@@ -10,10 +10,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@noble/curves": "^1.0.0"
+    "@noble/curves": "^1.9.7"
   },
   "devDependencies": {
-    "esbuild": "^0.19.0",
-    "wrangler": "^3.0.0"
+    "esbuild": "^0.19.12",
+    "wrangler": "^3.114.14"
   }
 }

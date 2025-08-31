@@ -906,7 +906,12 @@ function buildQuery(filter: NostrFilter): { sql: string; params: any[] } {
 }
 
 // Archive functions with hourly partitions
-async function archiveOldEvents(db: D1Database, r2: R2Bucket): Promise<void> {
+async function archiveOldEvents(db: D1Database, r2?: R2Bucket): Promise<void> {
+  // Skip archiving if R2 is not available
+  if (!r2) {
+    console.log('R2 archiving disabled - skipping archive process');
+    return;
+  }
   const cutoffTime = Math.floor(Date.now() / 1000) - (ARCHIVE_RETENTION_DAYS * 24 * 60 * 60);
 
   console.log(`Archiving events older than ${new Date(cutoffTime * 1000).toISOString()}`);
@@ -1220,7 +1225,11 @@ async function archiveOldEvents(db: D1Database, r2: R2Bucket): Promise<void> {
 }
 
 // Query archive function with hourly partitions
-async function queryArchive(filter: NostrFilter, hotDataCutoff: number, r2: R2Bucket): Promise<NostrEvent[]> {
+async function queryArchive(filter: NostrFilter, hotDataCutoff: number, r2?: R2Bucket): Promise<NostrEvent[]> {
+  // Return empty results if R2 is not available
+  if (!r2) {
+    return [];
+  }
   const results: NostrEvent[] = [];
   const processedEventIds = new Set<string>();
 
