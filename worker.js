@@ -2441,6 +2441,7 @@ __export(config_exports, {
   allowedTags: () => allowedTags,
   antiSpamKinds: () => antiSpamKinds,
   blockedContent: () => blockedContent,
+  blockedEventKindRanges: () => blockedEventKindRanges,
   blockedEventKinds: () => blockedEventKinds,
   blockedNip05Domains: () => blockedNip05Domains,
   blockedPubkeys: () => blockedPubkeys,
@@ -2658,8 +2659,29 @@ var allowedPubkeys = /* @__PURE__ */ new Set([
   // ... pubkeys that are explicitly allowed
 ]);
 var blockedEventKinds = /* @__PURE__ */ new Set([
-  1064
+  1064,
+  // Already blocked
+  1063,
+  // File metadata
+  1311,
+  // Live chat messages
+  1971,
+  // Problem trackers
+  1984,
+  // Reporting
+  1985,
+  // Label definitions
+  4550
+  // Job applications
 ]);
+var blockedEventKindRanges = [
+  { min: 5e3, max: 5999 },
+  // Job postings
+  { min: 6e3, max: 6999 },
+  // Job applications
+  { min: 4e4, max: 49999 }
+  // Custom application events
+];
 var allowedEventKinds = /* @__PURE__ */ new Set([
   // Allow NIP-72 kinds explicitly if allowlist is used
   34550,
@@ -2703,7 +2725,15 @@ function isEventKindAllowed(kind) {
   if (allowedEventKinds.size > 0 && !allowedEventKinds.has(kind)) {
     return false;
   }
-  return !blockedEventKinds.has(kind);
+  if (blockedEventKinds.has(kind)) {
+    return false;
+  }
+  for (const range of blockedEventKindRanges) {
+    if (kind >= range.min && kind <= range.max) {
+      return false;
+    }
+  }
+  return true;
 }
 function containsBlockedContent(event) {
   const lowercaseContent = (event.content || "").toLowerCase();
@@ -9074,6 +9104,16 @@ var RelayWebSocket = class _RelayWebSocket {
     if (url.pathname === "/do-broadcast") {
       return await this.handleDOBroadcast(request);
     }
+    if (url.pathname === "/do-init-upstream") {
+      try {
+        console.log(`DO ${this.doName} init-upstream called`);
+        await this.initUpstream();
+        await this.startPersistentUpstream();
+        return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { "Content-Type": "application/json" } });
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false, error: e?.message || "error" }), { status: 500, headers: { "Content-Type": "application/json" } });
+      }
+    }
     const upgradeHeader = request.headers.get("Upgrade");
     if (!upgradeHeader || upgradeHeader !== "websocket") {
       return new Response("Expected Upgrade: websocket", { status: 426 });
@@ -9734,6 +9774,17 @@ async function initializeDatabase(db) {
       `CREATE INDEX IF NOT EXISTS idx_tags_name_value_event ON tags(tag_name, tag_value, event_id)`,
       // Full-text search over posts (last 90 days kept in events but FTS table can hold all, we clean on retention)
       `CREATE VIRTUAL TABLE IF NOT EXISTS events_fts USING fts5(content, event_id)`,
+      `CREATE TABLE IF NOT EXISTS contact_meta (
+        follower_pubkey TEXT PRIMARY KEY,
+        last_list_at INTEGER
+      )`,
+      `CREATE TABLE IF NOT EXISTS follow_index (
+        followee_pubkey TEXT NOT NULL,
+        follower_pubkey TEXT NOT NULL,
+        PRIMARY KEY (followee_pubkey, follower_pubkey)
+      )`,
+      `CREATE INDEX IF NOT EXISTS idx_follow_index_followee ON follow_index(followee_pubkey)`,
+      `CREATE INDEX IF NOT EXISTS idx_follow_index_follower ON follow_index(follower_pubkey)`,
       `CREATE TABLE IF NOT EXISTS paid_pubkeys (
         pubkey TEXT PRIMARY KEY,
         paid_at INTEGER NOT NULL,
@@ -10043,6 +10094,27 @@ async function saveEventToD1(event, env) {
     try {
       if (event.kind === 1 || event.kind === 30023) {
         await session.prepare(`INSERT INTO events_fts (rowid, content, event_id) VALUES ((SELECT rowid FROM events WHERE id = ?), ?, ?)`).bind(event.id, event.content, event.id).run();
+      }
+    } catch {
+    }
+    try {
+      if (event.kind === 3) {
+        const follower = event.pubkey;
+        const createdAt = Number(event.created_at || 0);
+        const last = await session.prepare(`SELECT last_list_at as t FROM contact_meta WHERE follower_pubkey=?`).bind(follower).first();
+        const lastAt = Number(last?.t || 0);
+        if (!lastAt || createdAt >= lastAt) {
+          await session.prepare(`DELETE FROM follow_index WHERE follower_pubkey=?`).bind(follower).run();
+          const batch = [];
+          for (const t of event.tags || []) {
+            if (Array.isArray(t) && t[0] === "p" && typeof t[1] === "string") {
+              batch.push(session.prepare(`INSERT OR REPLACE INTO follow_index (followee_pubkey, follower_pubkey) VALUES(?, ?)`).bind(t[1], follower));
+            }
+          }
+          if (batch.length)
+            await session.batch(batch);
+          await session.prepare(`INSERT INTO contact_meta (follower_pubkey, last_list_at) VALUES(?, ?) ON CONFLICT(follower_pubkey) DO UPDATE SET last_list_at=excluded.last_list_at`).bind(follower, createdAt).run();
+        }
       }
     } catch {
     }
@@ -11812,6 +11884,15 @@ var relay_worker_default = {
           return handleRelayInfoRequest(request);
         } else {
           ctx.waitUntil(initializeDatabase(env.RELAY_DATABASE).catch((e) => console.error("DB init error:", e)));
+          try {
+            const cf = request.cf;
+            const { stub, doName } = await getOptimalDO(cf, env, url);
+            const u = new URL("https://internal/do-init-upstream");
+            u.searchParams.set("doName", doName);
+            ctx.waitUntil(stub.fetch(u.toString()).catch(() => {
+            }));
+          } catch {
+          }
           return serveLandingPage();
         }
       } else if (url.pathname === "/.well-known/nostr.json") {
@@ -11855,6 +11936,14 @@ var relay_worker_default = {
       await archiveOldEvents(env.RELAY_DATABASE, env.EVENT_ARCHIVE);
     } catch (error) {
       console.error("Archive process failed:", error);
+    }
+    try {
+      const u = new URL("https://internal/do-init-upstream");
+      const url = new URL("https://dummy/");
+      const { stub, doName } = await getOptimalDO({}, env, url);
+      u.searchParams.set("doName", doName);
+      await stub.fetch(u.toString());
+    } catch {
     }
     try {
       const session = env.RELAY_DATABASE.withSession("first-unconstrained");

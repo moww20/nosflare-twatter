@@ -116,6 +116,18 @@ export class RelayWebSocket implements DurableObject {
       return await this.handleDOBroadcast(request);
     }
 
+    // Init upstream endpoint (HTTP) to spin up and ensure upstream subs
+    if (url.pathname === '/do-init-upstream') {
+      try {
+        console.log(`DO ${this.doName} init-upstream called`);
+        await this.initUpstream();
+        await this.startPersistentUpstream();
+        return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+      } catch (e:any) {
+        return new Response(JSON.stringify({ ok:false, error: e?.message||'error' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+      }
+    }
+
     // Handle WebSocket upgrade
     const upgradeHeader = request.headers.get('Upgrade');
     if (!upgradeHeader || upgradeHeader !== 'websocket') {

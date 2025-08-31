@@ -2463,6 +2463,14 @@ export default {
         } else {
           // Initialize DB and serve landing page
           ctx.waitUntil(initializeDatabase(env.RELAY_DATABASE).catch(e => console.error('DB init error:', e)));
+          // Kick upstream in DO even without WS client
+          try {
+            const cf = (request as any).cf;
+            const { stub, doName } = await getOptimalDO(cf, env, url);
+            const u = new URL('https://internal/do-init-upstream');
+            u.searchParams.set('doName', doName);
+            ctx.waitUntil(stub.fetch(u.toString()).catch(()=>{}));
+          } catch {}
           return serveLandingPage();
         }
       } else if (url.pathname === '/.well-known/nostr.json') {
@@ -2511,6 +2519,14 @@ export default {
     } catch (error) {
       console.error('Archive process failed:', error);
     }
+    // Ensure upstream is alive via DO ping
+    try {
+      const u = new URL('https://internal/do-init-upstream');
+      const url = new URL('https://dummy/');
+      const { stub, doName } = await getOptimalDO({}, env, url);
+      u.searchParams.set('doName', doName);
+      await stub.fetch(u.toString());
+    } catch {}
     // Optionally, emit a small metrics heartbeat into logs
     try {
       const session = env.RELAY_DATABASE.withSession('first-unconstrained');
