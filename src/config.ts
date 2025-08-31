@@ -104,8 +104,21 @@ export const allowedPubkeys = new Set<string>([
 // Blocked event kinds
 // Add comma-separated kinds Ex: 1064, 4, 22242
 export const blockedEventKinds = new Set([
-  1064
+  1064,     // Already blocked
+  1063,     // File metadata
+  1311,     // Live chat messages
+  1971,     // Problem trackers
+  1984,     // Reporting
+  1985,     // Label definitions
+  4550      // Job applications
 ]);
+
+// Blocked event kind ranges
+export const blockedEventKindRanges = [
+  { min: 5000, max: 5999 },   // Job postings
+  { min: 6000, max: 6999 },   // Job applications
+  { min: 40000, max: 49999 }  // Custom application events
+];
 
 // Allowed event kinds
 // Add comma-separated kinds Ex: 1, 2, 3
@@ -174,7 +187,20 @@ export function isEventKindAllowed(kind: number): boolean {
   if (allowedEventKinds.size > 0 && !allowedEventKinds.has(kind)) {
     return false;
   }
-  return !blockedEventKinds.has(kind);
+
+  // Check if kind is in blocked set
+  if (blockedEventKinds.has(kind)) {
+    return false;
+  }
+
+  // Check if kind falls within blocked ranges
+  for (const range of blockedEventKindRanges) {
+    if (kind >= range.min && kind <= range.max) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 export function containsBlockedContent(event: NostrEvent): boolean {
