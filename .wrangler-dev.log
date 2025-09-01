@@ -1,0 +1,471 @@
+
+Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
+
+ ⛅️ wrangler 4.33.1
+───────────────────
+Your Worker has access to the following bindings:
+Binding                                   Resource            Mode
+env.RELAY_WEBSOCKET (RelayWebSocket)      Durable Object      local
+env.RELAY_DATABASE (nostr-relay)          D1 Database         local
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mMiniflare does not currently trigger scheduled Workers automatically.[0m
+
+  Refer to [4mhttps://developers.cloudflare.com/workers/configuration/cron-triggers/#test-cron-triggers[0m for more details 
+
+
+⎔ Starting local server...
+[wrangler:info] Ready on http://localhost:8787
+User location: continent=NA, country=US, region=Virginia, colo=IAD
+Connected to DO: relay-ENAM-primary (hint: enam)
+[wrangler:info] GET / 200 OK (31ms)
+DO relay-ENAM-primary init-upstream called
+Database initialization completed!
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = futdhcv59g6ejj4nr2gt0h4i
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = cvpe7n0em86lsljk0e36blep
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = qlk4708r91gvgk40ng393bd9
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 898g9rfm3lu8uivpn261itc2
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = nrpdlckapeabdoqg7m4acb5d
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = ql3k1novffc6uh3ln5ejv6jr
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = gj1tmheen8uf07vs39q0tcrd
+
+
+Event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb saved successfully to D1.
+DO relay-WNAM-primary received event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-WEUR-primary received event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-EEUR-primary received event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-APAC-primary received event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-OC-primary received event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-SAM-primary received event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-AFR-primary received event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-ME-primary received event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb from e2e01601-1da7-4974-bca4-df0f54fecd4d
+Event b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb broadcast from DO relay-ENAM-primary to 8/8 remote DOs
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = ifi8fprb1v6sm3p5qivuqtr6
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 5ree9mkinjsnghmssfu9p703
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = tgcqfoss36214ts3do9l8p20
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = vvt9ppmhr3j6k5qcagjlhvrt
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 13qfvdf72nbc16d5d78aoael
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = rich0g409camj729c1skupar
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = j4tesq5kvj46ljfiaeteep8o
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr.w3ird.tech; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = v56pepe6l7hkqsuep53et8oa
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 8rtdg68cn2clhk1jojmdd975
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = b0jtgf8bch9v6hqn45s8gqjv
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 3rkav74lnvu5u6g34i14guav
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 5k0jro0b9g860emd89ka41sr
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = lrc25gr8ulatvpd8mfjcq73g
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = hnb83bcrevnjllt13g8fcgrd
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = u24o2g5d6agk379307630kuc
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.current.fyi; params.service = ; gai_strerror(status) = No address associated with hostname[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = omb3dqa9lugb6hlh8pql1adu
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 1ncm9gqvhbegafgn8i633go3
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 9s7jr307q6tnamkdf5i3n29i
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 02glt9fo1ei937h7kv6gq54f
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = n6mmqa4ho1lu74qc3q7qushd
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = sc7j12cvmg3smil5fa9eqsaf
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = hanpph959t27040ke7hbksmq
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 05snabteh2noic7gie8e58lj
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = nostr-relay.siamstr.com; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = ekoc5p0i9rve8fjboakvefuq
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = s9ifp1bfqd9svfv9ube4vul2
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 5oej28uqni9gik6sou6ah6h1
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = tb9it93dg3a5umvpsi4ietqg
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 9pflpcr5co6oqa5d3q973sv1
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = v5tt537fo7mdiqkfh8btgksv
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 6n3ntu1g77tqaa1hcu6bphjj
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = qi3du2sa5aeggs89lug1kaq2
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.bg; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = ta6loidrje23d55h5q71oj0n
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = dbmrjl4fvcse5dr5jhr77cbc
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = tj57plk8ti3j6o710ji18dr5
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = dfmvk0sjsu4reh0n0cjfko75
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = tmr748s3ksm7kvcmnia2n90n
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 5c6k9ktfvd5af6lp02l173h0
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = hmp0jkm6bpieovgmsktrnbpb
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = drmu4u2fnjonmbdv8lc5uaa0
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostr.it; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = idnlhurkdd29imdv0a3g5p69
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 3tsp33pjutf79rl56tq7sh53
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = h4br8i76jflbqbuskrpvbeko
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = mlltbsjigjk4fgtiaekkgrt9
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 2guntat048ccs4rsom55lt7k
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = uelg33gjaihjgnur87qr6a15
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 8m1dn641u1ktffb5udsbtsd1
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 294obsqkln5c24isr0i2qbcp
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.nostrich.land; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = po1n98fn8vako4fk9eabfn3m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 224as806ro2mtol997hid2us
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 1q6q2muff4re166or4a2r7jg
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = rtu7qs8248su09tq7jd43fei
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = kig12jin7jtfev36af3ua0vc
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 6gj9hn4624v2m3q2ckah6m9o
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = rqtbp282v2k3e5svfr8qpkls
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = p43qbsn09i5ehvbtbslceov6
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1298: failed: DNS lookup failed.; params.host = relay.kronkltd.net; params.service = ; gai_strerror(status) = Name or service not known[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4973a92 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49744c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2ebaa80 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a04c0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a1b10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30a2fc0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 49lrd4a8f436qe8ln57ngeit
+
+
+Event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a saved successfully to D1.
+DO relay-WNAM-primary received event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-WEUR-primary received event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-EEUR-primary received event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-APAC-primary received event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-OC-primary received event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-SAM-primary received event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-AFR-primary received event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-ME-primary received event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a from e2e01601-1da7-4974-bca4-df0f54fecd4d
+Event a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a broadcast from DO relay-ENAM-primary to 8/8 remote DOs
+Event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 saved successfully to D1.
+DO relay-WNAM-primary received event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-WEUR-primary received event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-EEUR-primary received event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-APAC-primary received event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-OC-primary received event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-SAM-primary received event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-AFR-primary received event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 from e2e01601-1da7-4974-bca4-df0f54fecd4d
+DO relay-ME-primary received event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 from e2e01601-1da7-4974-bca4-df0f54fecd4d
+Event 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986 broadcast from DO relay-ENAM-primary to 8/8 remote DOs
+Duplicate event detected: b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb
+Duplicate event detected: b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb
+Duplicate event detected: b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb
+Duplicate event detected: b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb
+Duplicate event detected: b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb
+Duplicate event detected: b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb
+Duplicate event detected: a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a
+Duplicate event detected: 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986
+Duplicate event detected: b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb
+Duplicate event detected: a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a
+Duplicate event detected: b89d581af7d817bbdcd3658c2072f312e667d22c8b5d72fbd79cb83b1e854ccb
+Duplicate event detected: 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986
+Duplicate event detected: 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986
+Duplicate event detected: 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986
+Duplicate event detected: a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a
+Duplicate event detected: 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986
+Duplicate event detected: a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a
+Duplicate event detected: a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a
+Event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e saved successfully to D1.
+DO relay-ENAM-primary received event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e from ac63e014-ca5a-49eb-ac96-b9ab7a5ae4bc
+DO relay-WEUR-primary received event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e from ac63e014-ca5a-49eb-ac96-b9ab7a5ae4bc
+DO relay-EEUR-primary received event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e from ac63e014-ca5a-49eb-ac96-b9ab7a5ae4bc
+DO relay-APAC-primary received event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e from ac63e014-ca5a-49eb-ac96-b9ab7a5ae4bc
+DO relay-OC-primary received event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e from ac63e014-ca5a-49eb-ac96-b9ab7a5ae4bc
+DO relay-SAM-primary received event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e from ac63e014-ca5a-49eb-ac96-b9ab7a5ae4bc
+DO relay-AFR-primary received event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e from ac63e014-ca5a-49eb-ac96-b9ab7a5ae4bc
+DO relay-ME-primary received event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e from ac63e014-ca5a-49eb-ac96-b9ab7a5ae4bc
+Event 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e broadcast from DO relay-WNAM-primary to 8/8 remote DOs
+Duplicate event detected: 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986
+Duplicate event detected: 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986
+Duplicate event detected: a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a
+Duplicate event detected: a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a
+Duplicate event detected: 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e
+Duplicate event detected: a9ff0d31cf053e698e130f2923c235215dbbfaafe70333ce9c85252f1171412a
+Duplicate event detected: 5d0506f5d75061bd093ee05b3d8835b008f70eedaa2dcc21b5fc5fa001404986
+Duplicate event detected: 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e
+Duplicate event detected: 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e
+Duplicate event detected: 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e
+Duplicate event detected: 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e
+Duplicate event detected: 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e
+Duplicate event detected: 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e
+Duplicate event detected: 005d987c5b92fbb4cb4d4b8c7563bf16634e4949aff0d6030503809302d7560e
+Event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 saved successfully to D1.
+DO relay-WNAM-primary received event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 from 342ac10c-905c-43d4-aab0-e4a0417d3b79
+DO relay-ENAM-primary received event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 from 342ac10c-905c-43d4-aab0-e4a0417d3b79
+DO relay-WEUR-primary received event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 from 342ac10c-905c-43d4-aab0-e4a0417d3b79
+DO relay-EEUR-primary received event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 from 342ac10c-905c-43d4-aab0-e4a0417d3b79
+DO relay-APAC-primary received event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 from 342ac10c-905c-43d4-aab0-e4a0417d3b79
+DO relay-SAM-primary received event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 from 342ac10c-905c-43d4-aab0-e4a0417d3b79
+DO relay-AFR-primary received event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 from 342ac10c-905c-43d4-aab0-e4a0417d3b79
+DO relay-ME-primary received event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 from 342ac10c-905c-43d4-aab0-e4a0417d3b79
+Event 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805 broadcast from DO relay-OC-primary to 8/8 remote DOs
+Duplicate event detected: 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805
+Duplicate event detected: 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805
+Duplicate event detected: 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805
+Duplicate event detected: 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805
+Duplicate event detected: 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805
+Duplicate event detected: 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805
+Duplicate event detected: 9e845f48c3e15cadadf14f7a6cf92642dbd87078baaa80eccf935ef12b1a9805
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = k4n9mgphh7c3d85qspi4m1vs
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = cu531ud097vke973eajsls4e
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = uev3ohd8t4kcfs5s6n66akeo
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = mm8fbcslcfjkjk30e5ks4l0q
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 80rediaqc1qnmfi7j4jm5n7p
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = bekiv3ldkd620pacfnmufrrb
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = h74puc0frn70jc2susofs035
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = ds2jknk8k50mtj8a9cjsrefb
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1me = kj/async-io-unix.c++:1538: overloaded: connect(): Connection timed out[0m
+
+  stack: /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fba2 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@497fece /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@493a3ff /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49758f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4976080 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@2eae840 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@49698f0 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4969d10 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@4949b20 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b7a47 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b87b1 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30badb4 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@3097370 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@309de90 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@30b4780 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@277c8c7 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@1d3cc60 /workspace/node_modules/@cloudflare/workerd-linux-64/bin/workerd@29628e0; sentryErrorContext = jsgInternalError; wdErrId = 1gs018b0dn6f60bm3k2miphl
+
+

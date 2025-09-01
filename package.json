@@ -10,7 +10,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@noble/curves": "^1.9.7"
+    "@noble/curves": "^1.9.7",
+    "@noble/hashes": "^1.8.0",
+    "@scure/base": "^1.2.6",
+    "nostr-tools": "^2.16.2"
   },
   "devDependencies": {
     "esbuild": "^0.19.12",
