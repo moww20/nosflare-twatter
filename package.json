@@ -3,6 +3,9 @@
   "version": "7.2.7",
   "main": "worker.js",
   "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build": "esbuild src/index.ts --bundle --outfile=worker.js --platform=neutral --target=es2020 --format=esm --minify=false --keep-names --external:node:*",
     "dev": "wrangler dev",
