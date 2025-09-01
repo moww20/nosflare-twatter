@@ -3,7 +3,7 @@
   "outputDirectory": ".",
   "functions": {
     "worker.js": {
-      "runtime": "nodejs@18"
+      "runtime": "nodejs18.x"
     }
   },
   "rewrites": [
